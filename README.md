@@ -147,3 +147,23 @@ Build the following routes:
 - Delete stale branches on GitHub.
 - Remove unnecessary or commented-out code.
 - Update `.gitignore` if needed to exclude sensitive data
+
+---
+
+## Usage
+
+A small Flask API for looking up contracts and confirming customers.
+
+```bash
+pipenv install
+pipenv shell
+python server/app.py   # serves at http://localhost:5555
+pytest                 # run the test suite
+```
+
+| Route | Found | Not found |
+|-------|-------|-----------|
+| `GET /contract/<id>` | **200** with the contract's information | **404** |
+| `GET /customer/<customer_name>` | **204** with an empty body (customer data is sensitive) | **404** |
+
+Example: `/contract/1` returns `This contract is for John and building a shed`; `/customer/bob` returns 204.
